@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
 	#POST /orders
 	def create
 		puts params
-		@orders = Item.new
+		@orders = Order.new
 		@orders.itemId = params[:itemId]
 		@orders.customerId = params[:customerId]
 		@orders.email = params[:email]
