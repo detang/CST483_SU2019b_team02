@@ -66,6 +66,7 @@ while running
         puts "bye"
         break;
         
+    # User inputs data to create a new order    
     elsif userInput=='new order'
         puts "Please enter the item ID for the order"
         itemId = gets.chomp!
@@ -79,17 +80,18 @@ while running
         puts "status code #{response.code}"
         puts response.body
     
+    # User inputs data to get order by ID, customer ID, or customer email
     elsif userInput == 'get'
         puts "To get order by:
                 1) Order ID enter: id
-                2) Customer ID enter: customerId
+                2) Customer ID enter: customer id
                 3) Customer email enter: email"
         verify = gets.chomp!
         if verify == "id"
             puts "Please enter the order ID"
             input = gets.chomp!
-        elsif verify == "customerId"
-            puts "Please enter customer ID:"
+        elsif verify == "customer id"
+            puts "Please enter customer id:"
             input = gets.chomp!
         elsif verify == "email"
             puts "Please enter customer email:"
@@ -98,7 +100,8 @@ while running
         response = OrderClient.getOrder(verify, input)
         puts "status code #{response.code}"
         puts response.body
-        
+    
+    # User inputs details to register a customer    
     elsif userInput == "register"
         puts "\nPlease enter first name: "
         firstName = gets.chomp!
@@ -112,7 +115,8 @@ while running
         response = OrderClient.registerCustomer(customerHash)
         puts "status code #{response.code}"
         puts response.body
-        
+    
+    # User inputs details to find a customer  
     elsif userInput =="find"
         puts "To get customer 
             1) By ID enter: id
@@ -125,10 +129,12 @@ while running
                 puts "Enter the customer email"
                 input = gets.chomp!
             end
+            # verify the customer details
             response = OrderClient.getCustomer(verify, input)
             puts "status code #{response.code}"
             puts response.body
     
+    # User enters information to create a new item
     elsif userInput ==  "new item"
         puts "Please enter the item details"
         itemDetails = gets.chomp!
